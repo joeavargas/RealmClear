@@ -143,7 +143,15 @@ extension ToDoListViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            items?[indexPath.row].isDone.toggle()
+        if let item = items?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.isDone = !item.isDone
+                }
+            } catch  {
+                print("DEBUG: Error updating item", error.localizedDescription)
+            }
+        }
         
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
