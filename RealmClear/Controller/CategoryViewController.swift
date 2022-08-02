@@ -72,6 +72,7 @@ class CategoryViewController: SwipeTableViewController {
                 realm.add(category)
             }
         } catch {
+            //TODO: Handle error with UIAlertController and UIAlertAction
             print("DEBUG: Error saving context \(error)")
         }
         
@@ -91,6 +92,7 @@ class CategoryViewController: SwipeTableViewController {
                     self.realm.delete(category)
                 }
             } catch {
+                //TODO: Handle error with UIAlertController and UIAlertAction
                 print("DEBUG: Error deleting category", error.localizedDescription)
             }
         }

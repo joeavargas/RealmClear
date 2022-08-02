@@ -83,6 +83,7 @@ class ToDoListViewController: SwipeTableViewController {
                         currentCategory.items.append(newItem)
                     }
                 } catch {
+                    //TODO: Handle error with UIAlertController and UIAlertAction
                     print("DEBUG: Error saving item", error.localizedDescription)
                 }
                 
@@ -122,6 +123,7 @@ class ToDoListViewController: SwipeTableViewController {
                     self.realm.delete(item)
                 }
             } catch  {
+                //TODO: Handle error with UIAlertController and UIAlertAction
                 print("DEBUG: Error deleting item", error.localizedDescription)
             }
         }
@@ -165,6 +167,7 @@ extension ToDoListViewController {
                     //realm.delete(item)
                 }
             } catch  {
+                //TODO: Handle error with UIAlertController and UIAlertAction
                 print("DEBUG: Error updating item", error.localizedDescription)
             }
         }

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             _ = try Realm()
         } catch {
+            //TODO: Handle error with UIAlertController and UIAlertAction
             print("DEBUG: Error initiatizing new realm", error.localizedDescription)
         }
         
