@@ -147,6 +147,9 @@ extension ToDoListViewController {
             do {
                 try realm.write {
                     item.isDone = !item.isDone
+                    
+                    // Uncomment the following line if you wish to remove the item completely instead of marking it when a checkmark
+                    //realm.delete(item)
                 }
             } catch  {
                 print("DEBUG: Error updating item", error.localizedDescription)
