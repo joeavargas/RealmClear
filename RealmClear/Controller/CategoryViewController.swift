@@ -16,7 +16,6 @@ class CategoryViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Categories"
-        tableView.rowHeight = 80.0
         loadCategories()
         
     }
@@ -86,10 +85,10 @@ class CategoryViewController: SwipeTableViewController {
     }
     
     override func updateModel(at indexPath: IndexPath) {
-        if let categoryForDeletion = self.categories?[indexPath.row] {
+        if let category = self.categories?[indexPath.row] {
             do {
                 try self.realm.write{
-                    self.realm.delete(categoryForDeletion)
+                    self.realm.delete(category)
                 }
             } catch {
                 print("DEBUG: Error deleting category", error.localizedDescription)
