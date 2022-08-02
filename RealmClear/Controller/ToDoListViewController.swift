@@ -6,18 +6,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ToDoListViewController: UITableViewController {
     
-//    var itemsArray = [Item]()
+    var items: Results<Item>?
+    let realm = try! Realm()
     let searchBar: UISearchBar = UISearchBar()
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-//    var selectedCategory: Category? {
-//        didSet {
-//            loadItems()
-//        }
-//    }
+    var selectedCategory: Category? {
+        didSet {
+            loadItems()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,13 +74,19 @@ class ToDoListViewController: UITableViewController {
         
         let addAction = UIAlertAction(title: "Add", style: .default) { action in
             
-//            let newItem = Item(context: self.context)
-//            newItem.title = textField.text!
-//            newItem.isDone = false
-//            newItem.parentCategory = self.selectedCategory
-//
-//            self.itemsArray.append(newItem)
-            self.saveItems()
+            if let currentCategory = self.selectedCategory {
+                do {
+                    try self.realm.write {
+                        let newItem = Item()
+                        newItem.title = textField.text!
+                        currentCategory.items.append(newItem)
+                    }
+                } catch {
+                    print("DEBUG: Error saving item", error.localizedDescription)
+                }
+                
+                self.tableView.reloadData()
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -91,8 +98,7 @@ class ToDoListViewController: UITableViewController {
         alert.addAction(addAction)
         alert.addAction(cancelAction)
         
-        present(alert, animated: true, completion: nil)
-        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc private func searchButtonPressed() {
@@ -101,34 +107,12 @@ class ToDoListViewController: UITableViewController {
     }
     
     // MARK: - Helper Functions
-    private func saveItems() {
-        
-        do {
-//            try context.save()
-        } catch {
-            print("DEBUG: Error saving context \(error)")
-        }
-        self.tableView.reloadData()
+
+    private func loadItems() {
+        items = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+
+        tableView.reloadData()
     }
-    
-//    private func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
-//
-//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//
-//        if let additionalPredicate = predicate {
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-//        } else {
-//            request.predicate = categoryPredicate
-//        }
-//
-//        do {
-//            itemsArray = try context.fetch(request)
-//        } catch {
-//            print("DEBUG: Error fetching data from context \(error)")
-//        }
-//
-//        tableView.reloadData()
-//    }
     
     private func showSearchBarButton(shouldShow: Bool) {
         navigationItem.rightBarButtonItem = shouldShow ? UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed)) : nil
@@ -144,22 +128,22 @@ class ToDoListViewController: UITableViewController {
 // MARK: - TableView Delegate methods
 extension ToDoListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return items?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-//            let item = itemsArray[indexPath.row]
-//            cell.textLabel?.text = item.title
-//            cell.accessoryType = item.isDone ? .checkmark :  .none
-        
+        if let item = items?[indexPath.row]{
+            cell.textLabel?.text = item.title
+            cell.accessoryType = item.isDone ? .checkmark :  .none
+        } else {
+            cell.textLabel?.text = "No items added"
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            itemsArray[indexPath.row].isDone.toggle()
-        
-        saveItems()
+            items?[indexPath.row].isDone.toggle()
         
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)

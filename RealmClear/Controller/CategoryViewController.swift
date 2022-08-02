@@ -11,7 +11,7 @@ import RealmSwift
 class CategoryViewController: UITableViewController {
     
     let realm = try! Realm()
-    var categories = [Category]()
+    var categories: Results<Category>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,6 @@ class CategoryViewController: UITableViewController {
             let newCategory = Category()
             newCategory.name = textField.text!
 
-            self.categories.append(newCategory)
             self.save(newCategory)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -82,12 +81,7 @@ class CategoryViewController: UITableViewController {
     }
     
     private func loadCategories(){
-//        let request : NSFetchRequest<Category> = Category.fetchRequest()
-//        do {
-//            categories = try context.fetch(request)
-//        } catch {
-//            print("DEBUG: Error fetching data from context \(error)")
-//        }
+        categories = realm.objects(Category.self)
         
         tableView.reloadData()
     }
@@ -95,18 +89,18 @@ class CategoryViewController: UITableViewController {
 
 extension CategoryViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return categories?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-//        cell.textLabel?.text = categories[indexPath.row].name
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinationVC = ToDoListViewController()
-//        destinationVC.selectedCategory = categories[indexPath.row]
+        destinationVC.selectedCategory = categories?[indexPath.row]
         self.navigationController?.pushViewController(destinationVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
