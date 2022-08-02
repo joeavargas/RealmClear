@@ -13,6 +13,7 @@
 		E359BE6028989DE100CAB5FE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE5F28989DE100CAB5FE /* Item.swift */; };
 		E359BE6228989DEB00CAB5FE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE6128989DEB00CAB5FE /* Category.swift */; };
 		E359BE652898D42B00CAB5FE /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E359BE642898D42B00CAB5FE /* SwipeCellKit */; };
+		E359BE672899740F00CAB5FE /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE662899740F00CAB5FE /* SwipeTableViewController.swift */; };
 		E3A9044728986240003C572A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044628986240003C572A /* AppDelegate.swift */; };
 		E3A9044928986240003C572A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044828986240003C572A /* SceneDelegate.swift */; };
 		E3A9044B28986241003C572A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044A28986241003C572A /* CategoryViewController.swift */; };
@@ -24,6 +25,7 @@
 		E359BE5128986B7300CAB5FE /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		E359BE5F28989DE100CAB5FE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E359BE6128989DEB00CAB5FE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E359BE662899740F00CAB5FE /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		E3A9044328986240003C572A /* RealmClear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmClear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A9044628986240003C572A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3A9044828986240003C572A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				E3A9044A28986241003C572A /* CategoryViewController.swift */,
 				E359BE5128986B7300CAB5FE /* ToDoListViewController.swift */,
+				E359BE662899740F00CAB5FE /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				E359BE6028989DE100CAB5FE /* Item.swift in Sources */,
 				E359BE5228986B7300CAB5FE /* ToDoListViewController.swift in Sources */,
 				E3A9044B28986241003C572A /* CategoryViewController.swift in Sources */,
+				E359BE672899740F00CAB5FE /* SwipeTableViewController.swift in Sources */,
 				E3A9044728986240003C572A /* AppDelegate.swift in Sources */,
 				E3A9044928986240003C572A /* SceneDelegate.swift in Sources */,
 				E359BE6228989DEB00CAB5FE /* Category.swift in Sources */,
