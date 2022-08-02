@@ -80,6 +80,7 @@ class ToDoListViewController: UITableViewController {
                     try self.realm.write {
                         let newItem = Item()
                         newItem.title = textField.text!
+                        newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
                     }
                 } catch {
@@ -110,7 +111,7 @@ class ToDoListViewController: UITableViewController {
     // MARK: - Helper Functions
 
     private func loadItems() {
-        items = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        items = selectedCategory?.items.sorted(byKeyPath: "dateCreated", ascending: true)
 
         tableView.reloadData()
     }
@@ -165,15 +166,11 @@ extension ToDoListViewController {
 extension ToDoListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+        // Accending 'true' will put recently entered items at the bottom
+        items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         
         if searchBar.text?.count == 0 {
             loadItems()
-
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
         }
         tableView.reloadData()
     }
