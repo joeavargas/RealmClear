@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
     
+    let realm = try! Realm()
+    var categories = [Category]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +48,11 @@ class CategoryViewController: UITableViewController {
         
         let addAction = UIAlertAction(title: "Add", style: .default) { action in
             
-//            let newCategory = Category(context: self.context)
-//            newCategory.name = textfield.text!
-//
-//            self.categories.append(newCategory)
-//            self.saveCategories()
+            let newCategory = Category()
+            newCategory.name = textField.text!
+
+            self.categories.append(newCategory)
+            self.save(newCategory)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -66,12 +69,14 @@ class CategoryViewController: UITableViewController {
     
     // MARK: - Helper Functions
     
-    private func saveCategories() {
-//        do {
-//            try context.save()
-//        } catch {
-//            print("DEBUG: Error saving context \(error)")
-//        }
+    private func save(_ category: Category) {
+        do {
+            try realm.write {
+                realm.add(category)
+            }
+        } catch {
+            print("DEBUG: Error saving context \(error)")
+        }
         
         self.tableView.reloadData()
     }

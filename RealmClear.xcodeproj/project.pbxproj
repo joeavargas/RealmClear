@@ -10,7 +10,8 @@
 		E359BE5228986B7300CAB5FE /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE5128986B7300CAB5FE /* ToDoListViewController.swift */; };
 		E359BE5A2898777800CAB5FE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E359BE592898777800CAB5FE /* Realm */; };
 		E359BE5C2898777800CAB5FE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E359BE5B2898777800CAB5FE /* RealmSwift */; };
-		E359BE5E289898B700CAB5FE /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE5D289898B700CAB5FE /* Data.swift */; };
+		E359BE6028989DE100CAB5FE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE5F28989DE100CAB5FE /* Item.swift */; };
+		E359BE6228989DEB00CAB5FE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359BE6128989DEB00CAB5FE /* Category.swift */; };
 		E3A9044728986240003C572A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044628986240003C572A /* AppDelegate.swift */; };
 		E3A9044928986240003C572A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044828986240003C572A /* SceneDelegate.swift */; };
 		E3A9044B28986241003C572A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9044A28986241003C572A /* CategoryViewController.swift */; };
@@ -20,7 +21,8 @@
 
 /* Begin PBXFileReference section */
 		E359BE5128986B7300CAB5FE /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
-		E359BE5D289898B700CAB5FE /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		E359BE5F28989DE100CAB5FE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E359BE6128989DEB00CAB5FE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E3A9044328986240003C572A /* RealmClear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmClear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A9044628986240003C572A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3A9044828986240003C572A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +66,8 @@
 		E359BE4F2898635C00CAB5FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E359BE5D289898B700CAB5FE /* Data.swift */,
+				E359BE6128989DEB00CAB5FE /* Category.swift */,
+				E359BE5F28989DE100CAB5FE /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,11 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E359BE5E289898B700CAB5FE /* Data.swift in Sources */,
+				E359BE6028989DE100CAB5FE /* Item.swift in Sources */,
 				E359BE5228986B7300CAB5FE /* ToDoListViewController.swift in Sources */,
 				E3A9044B28986241003C572A /* CategoryViewController.swift in Sources */,
 				E3A9044728986240003C572A /* AppDelegate.swift in Sources */,
 				E3A9044928986240003C572A /* SceneDelegate.swift in Sources */,
+				E359BE6228989DEB00CAB5FE /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
