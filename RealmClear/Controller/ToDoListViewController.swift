@@ -26,9 +26,8 @@ class ToDoListViewController: UITableViewController {
         setupNavBarUI()
         setupTableViewUI()
         setupFloatingAddButton()
-        
+        showSearchBarButton(shouldShow: true)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
-
     }
     
 
@@ -60,11 +59,13 @@ class ToDoListViewController: UITableViewController {
     }
     
     private func setupNavBarUI(){
-        
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        self.title = selectedCategory?.name
     }
     
     private func setupTableViewUI(){
-        
+        tableView.separatorStyle = .none
     }
     
     // MARK: - Selector Functions
@@ -165,22 +166,20 @@ extension ToDoListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-//            let request: NSFetchRequest<Item> = Item.fetchRequest()
-//            let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//
-//            request.predicate = predicate
-//
-//            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-//
-//            loadItems(with: request, predicate: predicate)
-//
-//            if searchBar.text?.count == 0 {
-//                loadItems()
-//            }
+        items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+        
+        if searchBar.text?.count == 0 {
+            loadItems()
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//            loadItems()
+        loadItems()
         search(shouldShow: false)
         searchBar.text = ""
     }
