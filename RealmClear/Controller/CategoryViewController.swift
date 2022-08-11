@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import DeveloperToolsSupport
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -87,12 +88,22 @@ class CategoryViewController: SwipeTableViewController {
     
     override func updateModel(at indexPath: IndexPath) {
         if let category = self.categories?[indexPath.row] {
+            
+            // CASCADE DELETE
+            // 1. Grab linked child objects
+            let items = realm.objects(Item.self).filter("ANY parentCategory == %@", category)
             do {
                 try self.realm.write{
-                    self.realm.delete(category)
+                    // 2. Delete child objects first
+                    self.realm.delete(items)
+                    
+                    // 3. When child objects count is 0, delete the parent object
+                    if items.count == 0 {
+                        self.realm.delete(category)
+                    }
                 }
             } catch {
-                //TODO: Handle error with UIAlertController and UIAlertAction
+                //TODO: Handle error
                 print("DEBUG: Error deleting category", error.localizedDescription)
             }
         }
