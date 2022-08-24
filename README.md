@@ -18,7 +18,7 @@ Clone of the Clear app using Realm persistent storage
 - Note: this is the Realm version of the app. I'm currently working on a duplicate app that uses CoreData(link coming soon).
 
 ## 🔮 Upcoming 
-- Fix deleting items when the parent category is deleted
+- ~~Cascade delete parent objects and their respective child items~~
 - Add alert actions to display errors
 
 ## 📲 Installation
@@ -26,7 +26,8 @@ Clone of the Clear app using Realm persistent storage
 Download the project to your local machine and open with Xcode or clone using the [https://github.com/joeavargas/RealmClear.git](https://github.com/joeavargas/RealmClear.git) link. 
 
 ## 🎥 Demo
-[YouTube](https://youtu.be/rcG5sDvELss)
+- [YouTube](https://youtu.be/rcG5sDvELss)
+- [Solution demo](https://youtu.be/QfkHdi1YGqM) - cascade delete parent objects and their respective child items.
 
 ## 🤝 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
